@@ -17,7 +17,8 @@ namespace Common {
         return (pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset)==0);
     }
     template<typename T, typename... A>
-    inline auto createAndStartThread(int code_id, const string& name, T && func, A &&... args) noexcept {
+    inline auto createAndStartThread(int core_id, const string& name, T &&func, A &&... args) noexcept {
+        cout<<"Thread "<<name<<" started...\n";
         atomic<bool> running(false), failed(false);
         auto thread_body = [&] {
             if(core_id >= 0 && !setThreadCore(core_id)){
@@ -25,7 +26,7 @@ namespace Common {
                 failed = true;
                 return;
             }
-            cout<<"Set core affinity for "<<name<<" "<<pthread_self()<<" to "<<core_id<<end;
+            cout<<"Set core affinity for "<<name<<" "<<pthread_self()<<" to "<<core_id<<endl;
             running = true;
             forward<T>(func)((forward<A>(args))...);
         };

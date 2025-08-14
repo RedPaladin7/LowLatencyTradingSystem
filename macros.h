@@ -11,8 +11,9 @@ using namespace std;
 inline auto ASSERT(bool cond, const string& msg) noexcept {
     if(UNLIKELY(!cond)){
         cerr<<"ASSERT : "<< msg <<endl;
+        exit(EXIT_FAILURE);
     }
-    exit(EXIT_FAILURE);
+
 }
 
 inline auto FAILURE(const string& msg) noexcept{
