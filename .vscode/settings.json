@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.sqlbook": "sql",
+        "*.ndjson": "jsonl",
+        "*.dbclient-js": "javascript",
+        "*.tmpl": "html",
+        "*.html": "html",
+        "*.jet": "html",
+        "*.sol": "solidity",
+        "iostream": "cpp"
+    }
+}

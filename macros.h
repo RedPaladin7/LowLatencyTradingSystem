@@ -16,7 +16,7 @@ inline auto ASSERT(bool cond, const string& msg) noexcept {
 
 }
 
-inline auto FAILURE(const string& msg) noexcept{
+inline auto FATAL(const string& msg) noexcept{
     cerr<<"FATAL : "<<msg<<endl;
     exit(EXIT_FAILURE);
 }
