@@ -9,6 +9,9 @@
 #include "time_utils.h"
 
 using namespace std;
+// the performace critical thread does not write to the disk as it is expensive, it only pushes to the queue 
+// a background thread periodically checks the queue and logs all the messages to the file 
+// this way the performance critical thread does not have to wait for io resources for every log
 
 namespace Common {
     constexpr size_t LOG_QUEUE_SIZE = 8 * 1024 * 1024;
