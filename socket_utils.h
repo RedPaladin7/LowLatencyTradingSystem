@@ -19,6 +19,8 @@
 #include "logging.h"
 #include "macros.h"
 
+using namespace std;
+
 namespace Common {
     struct SocketCfg {
         string ip_;
@@ -110,7 +112,7 @@ namespace Common {
         };
 
         addrinfo *result = nullptr;
-        // converts host name to ip address
+        // converts ip + port into addrinfo structures
         // result is stored in result variable
         const auto rc = getaddrinfo(ip.c_str(), to_string(socket_cfg.port_).c_str(), &hints, &result);
         ASSERT(!rc, "getaddrinfo() failed. error:" + string(gai_strerror(rc)) + "errno:" + strerror(errno));
@@ -150,5 +152,6 @@ namespace Common {
                 ASSERT(setSOTimestamp(socket_fd), "setSOTimestamp() failed. errno:" + string(strerror(errno)));
             }
         }
+        return socket_fd;
     }
 }
