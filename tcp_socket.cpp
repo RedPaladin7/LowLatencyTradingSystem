@@ -2,6 +2,7 @@
 using namespace std;
 
 namespace Common {
+
     auto TCPSocket::connect(const string &ip, const string &iface, int port, bool is_listening)->int{
         const SocketCfg socket_cfg{ip, iface, port, false, is_listening, true};
         socket_fd_ = createSocket(logger_, socket_cfg);
